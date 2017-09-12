@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
- * Sirateck_Lemonway extension
+ * Selectbiz_Payoh extension
  * 
  * NOTICE OF LICENSE
  * 
@@ -10,18 +10,18 @@
  * It is also available through the world-wide-web at this URL:
  * http://opensource.org/licenses/mit-license.php
  * 
- * @category       Sirateck
- * @package        Sirateck_Lemonway
+ * @category       Selectbiz
+ * @package        Selectbiz_Payoh
  * @copyright      Copyright (c) 2015
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 -->
 <config>
 	<sections>
-		<sirateck_lemonway>
+		<selectbiz_payoh>
             <groups>
-            	<lemonwaymkt translate="label" module="lemonwaymkt">
-            		<label>Lemonway Marketplace configuration</label>
+            	<payohmkt translate="label" module="payohmkt">
+            		<label>Payoh Marketplace configuration</label>
    					<frontend_type>text</frontend_type>
 					<comment></comment>
    					<sort_order>30</sort_order>
@@ -76,8 +76,8 @@
 	                        <show_in_store>1</show_in_store>
 	                     </dispatch_payment>	     -->	                 
                       </fields> 
-             	</lemonwaymkt>
+             	</payohmkt>
              </groups>
-		</sirateck_lemonway>
+		</selectbiz_payoh>
 	</sections>
 </config>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Sirateck_Lemonwaymkt extension
+ * Selectbiz_Payohmkt extension
  * 
  * NOTICE OF LICENSE
  * 
@@ -10,105 +10,105 @@
  * It is also available through the world-wide-web at this URL:
  * http://opensource.org/licenses/mit-license.php
  * 
- * @category       Sirateck
- * @package        Sirateck_Lemonwaymkt
+ * @category       Selectbiz
+ * @package        Selectbiz_Payohmkt
  * @copyright      Copyright (c) 2015
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 -->
 <config>
     <modules>
-        <Sirateck_Lemonwaymkt>
+        <Selectbiz_Payohmkt>
             <version>1.1.0</version>
-        </Sirateck_Lemonwaymkt>
+        </Selectbiz_Payohmkt>
     </modules>
     <global>
         <resources>
-            <lemonwaymkt_setup>
+            <payohmkt_setup>
                 <setup>
-                    <module>Sirateck_Lemonwaymkt</module>
-                    <class>Sirateck_Lemonwaymkt_Model_Resource_Setup</class>
+                    <module>Selectbiz_Payohmkt</module>
+                    <class>Selectbiz_Payohmkt_Model_Resource_Setup</class>
                 </setup>
-            </lemonwaymkt_setup>
+            </payohmkt_setup>
         </resources>
          <blocks>
-            <lemonwaymkt>
-                <class>Sirateck_Lemonwaymkt_Block</class>
-            </lemonwaymkt>
+            <payohmkt>
+                <class>Selectbiz_Payohmkt_Block</class>
+            </payohmkt>
         </blocks>
         <helpers>
-            <lemonwaymkt>
-                <class>Sirateck_Lemonwaymkt_Helper</class>
-            </lemonwaymkt>
+            <payohmkt>
+                <class>Selectbiz_Payohmkt_Helper</class>
+            </payohmkt>
         </helpers>
         <models>
-            <lemonwaymkt>
-                <class>Sirateck_Lemonwaymkt_Model</class>
-                <resourceModel>sirateck_lemonwaymkt_resource</resourceModel>
-            </lemonwaymkt>
-            <lemonwaymkt_resource>
-                <class>Sirateck_Lemonwaymkt_Model_Resource</class>
-            </lemonwaymkt_resource>
+            <payohmkt>
+                <class>Selectbiz_Payohmkt_Model</class>
+                <resourceModel>selectbiz_payohmkt_resource</resourceModel>
+            </payohmkt>
+            <payohmkt_resource>
+                <class>Selectbiz_Payohmkt_Model_Resource</class>
+            </payohmkt_resource>
         </models>
         <events>
         	<core_abstract_save_after>
                 <observers>
-                   <lemonwaymkt_create_wallet>
+                   <payohmkt_create_wallet>
                       <type>singleton</type>
-                      <class>lemonwaymkt/observer</class>
+                      <class>payohmkt/observer</class>
                       <method>createWallet</method>
-                   </lemonwaymkt_create_wallet>
+                   </payohmkt_create_wallet>
                </observers>
             </core_abstract_save_after>
             <core_abstract_save_before>
             	<observers>
-            		<lemonwaymkt_send_payment_wallet>
+            		<payohmkt_send_payment_wallet>
                       <type>singleton</type>
-                      <class>lemonwaymkt/observer</class>
+                      <class>payohmkt/observer</class>
                       <method>sendPaymentToWallet</method>
-                   </lemonwaymkt_send_payment_wallet>
+                   </payohmkt_send_payment_wallet>
             	</observers>
             </core_abstract_save_before>
         </events>
     </global>
     <frontend>
 		<secure_url>
-            <lemonwaymkt>/lemonwaymkt</lemonwaymkt>
+            <payohmkt>/payohmkt</payohmkt>
         </secure_url>
         <routers>
-            <lemonwaymkt>
+            <payohmkt>
                 <use>standard</use>
                 <args>
-                    <module>Sirateck_Lemonwaymkt</module>
-                    <frontName>lemonwaymkt</frontName>
+                    <module>Selectbiz_Payohmkt</module>
+                    <frontName>payohmkt</frontName>
                 </args>
-            </lemonwaymkt>
+            </payohmkt>
         </routers>
 		<translate>
             <modules>
-                <Sirateck_Lemonwaymkt>
+                <Selectbiz_Payohmkt>
                     <files>
-                        <default>Sirateck_Lemonwaymkt.csv</default>
+                        <default>Selectbiz_Payohmkt.csv</default>
                     </files>
-                </Sirateck_Lemonwaymkt>
+                </Selectbiz_Payohmkt>
             </modules>
         </translate>
          <layout>
             <updates>
-                <lemonwaymkt>
-                    <file>lemonwaymkt.xml</file>
-                </lemonwaymkt>
+                <payohmkt>
+                    <file>payohmkt.xml</file>
+                </payohmkt>
             </updates>
         </layout>
 	</frontend>
     <adminhtml>
         <translate>
             <modules>
-                <Sirateck_Lemonwaymkt>
+                <Selectbiz_Payohmkt>
                     <files>
-                        <default>Sirateck_Lemonwaymkt.csv</default>
+                        <default>Selectbiz_Payohmkt.csv</default>
                     </files>
-                </Sirateck_Lemonwaymkt>
+                </Selectbiz_Payohmkt>
             </modules>
         </translate>
     </adminhtml>
@@ -117,21 +117,21 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <Sirateck_Lemonwaymkt before="Mage_Adminhtml">Sirateck_Lemonwaymkt_Adminhtml</Sirateck_Lemonwaymkt>
+                        <Selectbiz_Payohmkt before="Mage_Adminhtml">Selectbiz_Payohmkt_Adminhtml</Selectbiz_Payohmkt>
                     </modules>
                 </args>
             </adminhtml>
         </routers>
     </admin>
     <default>
-		<sirateck_lemonway>
-			<lemonwaymkt>			
+		<selectbiz_payoh>
+			<payohmkt>
 				<autocommission>1</autocommission>
 				<commission_amount></commission_amount>
 				<create_wallet>1</create_wallet>
 				<include_shipping>0</include_shipping>
 				<dispatch_payment>0</dispatch_payment>			
-			</lemonwaymkt>
-		</sirateck_lemonway>
+			</payohmkt>
+		</selectbiz_payoh>
 	</default>
 </config>

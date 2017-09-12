@@ -1,6 +1,6 @@
 <?php
 /**
- * Sirateck_Lemonwaymkt extension
+ * Selectbiz_Payohmkt extension
  *
  * NOTICE OF LICENSE
  *
@@ -9,8 +9,8 @@
  * It is also available through the world-wide-web at this URL:
  * http://opensource.org/licenses/mit-license.php
  *
- * @category       Sirateck
- * @package        Sirateck_Lemonwaymkt
+ * @category       Selectbiz
+ * @package        Selectbiz_Payohmkt
  * @copyright      Copyright (c) 2015
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
@@ -18,12 +18,12 @@
 /**
  * Vendor Account Controller
  *
- * @category    Sirateck
- * @package     Sirateck_Lemonwaymkt
- * @author Kassim Belghait kassim@sirateck.com
+ * @category    Selectbiz
+ * @package     Selectbiz_Payohmkt
+ * @author Kassim Belghait kassim@selectbiz.com
  */
 require_once 'Mage/Customer/controllers/AccountController.php';
-class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountController {
+class Selectbiz_Payohmkt_AccountController extends Mage_Customer_AccountController {
 
     /**
      * Action predispatch
@@ -141,7 +141,7 @@ class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountContro
                     );
                     
 
-                    $kit = Mage::getSingleton('sirateck_lemonway/apikit_kit');
+                    $kit = Mage::getSingleton('selectbiz_payoh/apikit_kit');
                         
                     $res = $kit->UploadFile($params);
                         
@@ -196,8 +196,8 @@ class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountContro
             $wallet = $this->getCustomerWallet();
                 
             if($wallet->getId()){
-                /* @var $iban Sirateck_Lemonway_Model_Iban*/
-                $iban = Mage::getModel('sirateck_lemonway/iban');
+                /* @var $iban Selectbiz_Payoh_Model_Iban*/
+                $iban = Mage::getModel('selectbiz_payoh/iban');
                 $customer = $this->_getSession()->getCustomer();
                 $data['customer_id'] = $customer->getId();
                 $data['wallet_id'] = $wallet->getWalletId();
@@ -216,7 +216,7 @@ class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountContro
                                 'dom2'      =>  $iban->getDom2(),
                         );
             
-                        $kit = Mage::getSingleton('sirateck_lemonway/apikit_kit');
+                        $kit = Mage::getSingleton('selectbiz_payoh/apikit_kit');
             
                         $res = $kit->RegisterIBAN($params);
             
@@ -266,7 +266,7 @@ class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountContro
                 $balFormated = Mage::helper("core")->formatPrice((float)$bal);
                 $ibanId = $data['iban_id'];
                 
-                $ibanObj = Mage::getModel('sirateck_lemonway/iban')->load((int)$ibanId);
+                $ibanObj = Mage::getModel('selectbiz_payoh/iban')->load((int)$ibanId);
                 if(!$ibanObj->getId())
                 {
                     $this->_getSession()->addError($this->__('Iban not found'));
@@ -296,15 +296,15 @@ class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountContro
                             $params = array(
                                     "wallet" => $walletId,
                                     "amountTot" => sprintf("%.2f" ,$amountToPay),
-                                    "amountCom" => sprintf("%.2f" ,(float)str_replace(",",".",Mage::getStoreConfig('sirateck_lemonway/lemonwaymkt/commission_amount'))),
+                                    "amountCom" => sprintf("%.2f" ,(float)str_replace(",",".",Mage::getStoreConfig('selectbiz_payoh/payohmkt/commission_amount'))),
                                     "message" => $this->__("Moneyout from %s by cutomer %s", Mage::app()->getStore()->getName(), $this->_getSession()->getCustomer()->getName()),
                                     "ibanId" => $ibanObj->getLwIbanId(),
-                                    "autoCommission" => Mage::getStoreConfig('sirateck_lemonway/lemonwaymkt/autocommission'),
+                                    "autoCommission" => Mage::getStoreConfig('selectbiz_payoh/payohmkt/autocommission'),
                             );
                             
                             //Init APi kit
-                            /* @var $kit Sirateck_Lemonway_Model_Apikit_Kit */
-                            $kit = Mage::getSingleton('sirateck_lemonway/apikit_kit');
+                            /* @var $kit Selectbiz_Payoh_Model_Apikit_Kit */
+                            $kit = Mage::getSingleton('selectbiz_payoh/apikit_kit');
                             
                             $apiResponse = $kit->MoneyOut($params);
                             
@@ -313,11 +313,11 @@ class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountContro
                         
                             if(count($apiResponse->operations))
                             {
-                                /* @var $op Sirateck_Lemonway_Model_Apikit_Apimodels_Operation */
+                                /* @var $op Selectbiz_Payoh_Model_Apikit_Apimodels_Operation */
                                 $op = $apiResponse->operations[0];
                                 if($op->getHpayId())
                                 {
-                                    $moneyout = Mage::getModel('sirateck_lemonway/moneyout');
+                                    $moneyout = Mage::getModel('selectbiz_payoh/moneyout');
                                     
                                     $moneyout->setWalletId($walletId);
                                     $moneyout->setCustomerId($this->_getSession()->getCustomer()->getId());
@@ -362,11 +362,11 @@ class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountContro
     
     protected function getCustomerWallet(){
         $customer = $this->_getSession()->getCustomer();
-        return Mage::getModel('sirateck_lemonway/wallet')->load($customer->getId(),'customer_id');
+        return Mage::getModel('selectbiz_payoh/wallet')->load($customer->getId(),'customer_id');
     }
     
     /**
-     * @return Sirateck_Lemonway_Model_Apikit_Apimodels_Wallet
+     * @return Selectbiz_Payoh_Model_Apikit_Apimodels_Wallet
      */
     protected function getCustomerWalletDetails(){
         $customer = $this->_getSession()->getCustomer();
@@ -376,10 +376,10 @@ class Sirateck_Lemonwaymkt_AccountController extends Mage_Customer_AccountContro
     }
     
     /**
-     * @return Sirateck_Lemonwaymkt_Helper_Data
+     * @return Selectbiz_Payohmkt_Helper_Data
      */
     protected function _getHelper(){
-        return Mage::helper('lemonwaymkt');
+        return Mage::helper('payohmkt');
     }
         
     

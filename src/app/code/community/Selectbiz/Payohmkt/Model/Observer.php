@@ -1,5 +1,5 @@
 <?php
-class Sirateck_Lemonwaymkt_Model_Observer{
+class Selectbiz_Payohmkt_Model_Observer{
     
     public function createWallet($observer){
         /* @var $userprofile Webkul_Marketplace_Model_Userprofile */
@@ -8,11 +8,11 @@ class Sirateck_Lemonwaymkt_Model_Observer{
         if(!($userprofile instanceof Webkul_Marketplace_Model_Userprofile))
             return $this;
         
-            if(!Mage::getStoreConfigFlag('sirateck_lemonway/lemonwaymkt/create_wallet'))
+            if(!Mage::getStoreConfigFlag('selectbiz_payoh/payohmkt/create_wallet'))
                 return $this;
         
         //Check if customer already have a wallet
-        $wallet = Mage::getModel('sirateck_lemonway/wallet')->load($userprofile->getMageuserid(),'customer_id');
+        $wallet = Mage::getModel('selectbiz_payoh/wallet')->load($userprofile->getMageuserid(),'customer_id');
         if($wallet->getId())
             return $this;
         
@@ -53,11 +53,11 @@ class Sirateck_Lemonwaymkt_Model_Observer{
                 return $this;
             
             
-            if($order->getPayment()->getMethod() != 'lemonway_webkit')
+            if($order->getPayment()->getMethod() != 'payoh_webkit')
                 return $this;
             
             //Check if customer already have a wallet
-            $wallet = Mage::getModel('sirateck_lemonway/wallet')->load($saleslist->getMageproownerid(),'customer_id');
+            $wallet = Mage::getModel('selectbiz_payoh/wallet')->load($saleslist->getMageproownerid(),'customer_id');
             if (!$wallet->getId()) {
                 return $this;
             }
@@ -68,17 +68,17 @@ class Sirateck_Lemonwaymkt_Model_Observer{
             }
 
             $params = array(
-                    "debitWallet"   => Mage::getSingleton('sirateck_lemonway/config')->getWalletMerchantId(),
+                    "debitWallet"   => Mage::getSingleton('selectbiz_payoh/config')->getWalletMerchantId(),
                     "creditWallet"  => $wallet->getWalletId(),
                     "amount"        => number_format((float)$amount, 2, '.', ''),
-                    "message"       => Mage::helper('lemonwaymkt')->__('%s - Send payment for product %s in order %s', Mage::app()->getStore()->getName(), $saleslist->getMageproname(), $order->getIncrementId()),
+                    "message"       => Mage::helper('payohmkt')->__('%s - Send payment for product %s in order %s', Mage::app()->getStore()->getName(), $saleslist->getMageproname(), $order->getIncrementId()),
                     //"scheduledDate" => "",
                     //"privateData" => "",
             );
         
             //Init APi kit
-            /* @var $kit Sirateck_Lemonway_Model_Apikit_Kit */
-            $kit = Mage::getSingleton('sirateck_lemonway/apikit_kit');
+            /* @var $kit Selectbiz_Payoh_Model_Apikit_Kit */
+            $kit = Mage::getSingleton('selectbiz_payoh/apikit_kit');
         
             try {
                 $res = $kit->SendPayment($params);
@@ -90,7 +90,7 @@ class Sirateck_Lemonwaymkt_Model_Observer{
                 
                 if(count($res->operations))
                 {
-                    /* @var $op Sirateck_Lemonway_Model_Apikit_Apimodels_Operation */
+                    /* @var $op Selectbiz_Payoh_Model_Apikit_Apimodels_Operation */
                     $op = $res->operations[0];
                 
                     if($op->getHpayId())
@@ -101,14 +101,14 @@ class Sirateck_Lemonwaymkt_Model_Observer{
                         if($transaction->getTransid())
                         {
                             $transaction->setType('Manual');
-                            $transaction->setMethod('Lemonway');
+                            $transaction->setMethod('Payoh');
                             $transaction->save();
                             
                             /*$params = array(
-                                    "debitWallet"   => Mage::getSingleton('sirateck_lemonway/config')->getWalletMerchantId(),
+                                    "debitWallet"   => Mage::getSingleton('selectbiz_payoh/config')->getWalletMerchantId(),
                                     "creditWallet"  => "SC",
                                     "amount"        => number_format((float)$saleslist->getTotalcommision(), 2, '.', ''),
-                                    "message"       => Mage::helper('lemonwaymkt')->__('%s - Send payment commision for order %s', Mage::app()->getStore()->getName(), $order->getIncrementId()),
+                                    "message"       => Mage::helper('payohmkt')->__('%s - Send payment commision for order %s', Mage::app()->getStore()->getName(), $order->getIncrementId()),
                             );
                             
                             $res = $kit->SendPayment($params);
@@ -132,9 +132,9 @@ class Sirateck_Lemonwaymkt_Model_Observer{
     
     /**
      * 
-     * @return Sirateck_Lemonwaymkt_Helper_Data
+     * @return Selectbiz_Payohmkt_Helper_Data
      */
     protected function getHelper(){
-        return Mage::helper('lemonwaymkt');
+        return Mage::helper('payohmkt');
     }
 }

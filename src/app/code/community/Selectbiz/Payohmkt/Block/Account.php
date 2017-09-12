@@ -1,5 +1,5 @@
 <?php
-class Sirateck_Lemonwaymkt_Block_Account extends Mage_Core_Block_Template{
+class Selectbiz_Payohmkt_Block_Account extends Mage_Core_Block_Template{
 	
 	protected $_walletDetails = null;
 	
@@ -10,7 +10,7 @@ class Sirateck_Lemonwaymkt_Block_Account extends Mage_Core_Block_Template{
 	protected $_wallet = null;
 	
 	/**
-	 * @return Sirateck_Lemonway_Model_Apikit_Apiresponse
+	 * @return Selectbiz_Payoh_Model_Apikit_Apiresponse
 	 */
 	public function getWalletDetails(){
 		if(is_null($this->_walletDetails))
@@ -25,7 +25,7 @@ class Sirateck_Lemonwaymkt_Block_Account extends Mage_Core_Block_Template{
 	public function getCustomerWallet(){
 		if(is_null($this->_wallet)){
 			
-			$this->_wallet = Mage::getModel('sirateck_lemonway/wallet')->load($this->getCustomer()->getId(),'customer_id');
+			$this->_wallet = Mage::getModel('selectbiz_payoh/wallet')->load($this->getCustomer()->getId(),'customer_id');
 		}
 		
 		return $this->_wallet;
@@ -33,10 +33,10 @@ class Sirateck_Lemonwaymkt_Block_Account extends Mage_Core_Block_Template{
 	}
 	
 	/**
-	 * @return Sirateck_Lemonwaymkt_Helper_Data
+	 * @return Selectbiz_Payohmkt_Helper_Data
 	 */
 	protected function _getHelper(){
-		return $this->helper('lemonwaymkt');
+		return $this->helper('payohmkt');
 	}
 	
 	/**
@@ -76,7 +76,7 @@ class Sirateck_Lemonwaymkt_Block_Account extends Mage_Core_Block_Template{
 		
 		if(is_null($this->_ibans))
 		{
-			$this->_ibans = Mage::getModel('sirateck_lemonway/iban')->getCollection()
+			$this->_ibans = Mage::getModel('selectbiz_payoh/iban')->getCollection()
 							->addFieldToFilter('customer_id',$this->getCustomer()->getId())
 							->setPageSize(5);
 		}
@@ -89,7 +89,7 @@ class Sirateck_Lemonwaymkt_Block_Account extends Mage_Core_Block_Template{
 		
 		if(is_null($this->_moneyouts)){
 			
-			$this->_moneyouts = Mage::getModel('sirateck_lemonway/moneyout')->getCollection()
+			$this->_moneyouts = Mage::getModel('selectbiz_payoh/moneyout')->getCollection()
 										->addFieldToFilter('customer_id',$this->getCustomer()->getId())
 										->setPageSize(5)
 										->setOrder('created_at', 'desc');
@@ -102,14 +102,14 @@ class Sirateck_Lemonwaymkt_Block_Account extends Mage_Core_Block_Template{
 	
 	public function getWalletStatusLabel($status_id){
 		$status_id = (int)$status_id;
-		$statuesLabel = Sirateck_Lemonway_Model_Wallet::$statuesLabel;
+		$statuesLabel = Selectbiz_Payoh_Model_Wallet::$statuesLabel;
 		if(isset($statuesLabel[$status_id]))
 			return $this->__($statuesLabel[$status_id]);
 		return $this->__("N/A");
 	}
 	
 	public function getDocumentsType(){
-		return Sirateck_Lemonway_Model_Wallet::$docsType;
+		return Selectbiz_Payoh_Model_Wallet::$docsType;
 	}
 	
 	

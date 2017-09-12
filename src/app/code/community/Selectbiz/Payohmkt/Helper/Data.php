@@ -1,6 +1,6 @@
 <?php
 /**
- * Sirateck_Lemonwaymkt extension
+ * Selectbiz_Payohmkt extension
  * 
  * NOTICE OF LICENSE
  * 
@@ -9,38 +9,38 @@
  * It is also available through the world-wide-web at this URL:
  * http://opensource.org/licenses/mit-license.php
  * 
- * @category       Sirateck
- * @package        Sirateck_Lemonwaymkt
+ * @category       Selectbiz
+ * @package        Selectbiz_Payohmkt
  * @copyright      Copyright (c) 2015
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 /**
- * Lemonwaymkt default helper
+ * Payohmkt default helper
  *
- * @category    Sirateck
- * @package     Sirateck_Lemonwaymkt
- * @author Kassim Belghait kassim@sirateck.com
+ * @category    Selectbiz
+ * @package     Selectbiz_Payohmkt
+ * @author Kassim Belghait kassim@selectbiz.com
  */
-class Sirateck_Lemonwaymkt_Helper_Data extends Mage_Core_Helper_Abstract
+class Selectbiz_Payohmkt_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
      * 
      * @param Mage_Customer_Model_Customer $customer
      * @param Webkul_Marketplace_Model_Userprofile $userinfo
      * @throws Exception
-     * @return Sirateck_Lemonway_Model_Wallet
+     * @return Selectbiz_Payoh_Model_Wallet
      */
     public function registerWallet($customer,$userinfo){
         
         
-        $wallet = Mage::getModel('sirateck_lemonway/wallet');
+        $wallet = Mage::getModel('selectbiz_payoh/wallet');
         $wallet->setIsAdmin(false);
         $wallet->setIsDefault(true);
         $wallet->setCustomerId($customer->getId());
         
         //Init APi kit
-        /* @var $kit Sirateck_Lemonway_Model_Apikit_Kit */
-        $kit = Mage::getSingleton('sirateck_lemonway/apikit_kit');
+        /* @var $kit Selectbiz_Payoh_Model_Apikit_Kit */
+        $kit = Mage::getSingleton('selectbiz_payoh/apikit_kit');
 
         $params = array();
         
@@ -121,18 +121,18 @@ class Sirateck_Lemonwaymkt_Helper_Data extends Mage_Core_Helper_Abstract
     }
     
     /**
-     * @return Sirateck_Lemonway_Model_Apikit_Apiresponse
+     * @return Selectbiz_Payoh_Model_Apikit_Apiresponse
      */
     public function getWalletDetails($customer_id){
 
-            $wallet = Mage::getModel('sirateck_lemonway/wallet')->load($customer_id,'customer_id');
+            $wallet = Mage::getModel('selectbiz_payoh/wallet')->load($customer_id,'customer_id');
     
             if(!$wallet->getId())
                 return null;
                     
             $params = array("wallet"=>$wallet->getWalletId());
 
-            return Mage::getSingleton('sirateck_lemonway/apikit_kit')->GetWalletDetails($params);
+            return Mage::getSingleton('selectbiz_payoh/apikit_kit')->GetWalletDetails($params);
     }
     
     /**

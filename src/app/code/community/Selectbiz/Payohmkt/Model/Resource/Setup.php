@@ -1,6 +1,6 @@
 <?php
 /**
- * Sirateck_Lemonwaymkt extension
+ * Selectbiz_Payohmkt extension
  * 
  * NOTICE OF LICENSE
  * 
@@ -9,18 +9,18 @@
  * It is also available through the world-wide-web at this URL:
  * http://opensource.org/licenses/mit-license.php
  * 
- * @category       Sirateck
- * @package        Sirateck_Lemonwaymkt
+ * @category       Selectbiz
+ * @package        Selectbiz_Payohmkt
  * @copyright      Copyright (c) 2015
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 /**
- * Lemonwaymkt setup
+ * Payohmkt setup
  *
- * @category    Sirateck
- * @package     Sirateck_Lemonwaymkt
- * @author Kassim Belghait kassim@sirateck.com
+ * @category    Selectbiz
+ * @package     Selectbiz_Payohmkt
+ * @author Kassim Belghait kassim@selectbiz.com
  */
-class Sirateck_Lemonwaymkt_Model_Resource_Setup extends Mage_Core_Model_Resource_Setup
+class Selectbiz_Payohmkt_Model_Resource_Setup extends Mage_Core_Model_Resource_Setup
 {
 }
