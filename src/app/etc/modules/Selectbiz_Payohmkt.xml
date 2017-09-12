@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Sirateck_Lemonway extension
+ * Selectbiz_Payoh extension
  * 
  * NOTICE OF LICENSE
  * 
@@ -10,22 +10,22 @@
  * It is also available through the world-wide-web at this URL:
  * http://opensource.org/licenses/mit-license.php
  * 
- * @category       Sirateck
- * @package        Sirateck_Lemonway
+ * @category       Selectbiz
+ * @package        Selectbiz_Payoh
  * @copyright      Copyright (c) 2015
  * @license        http://opensource.org/licenses/mit-license.php MIT License
  */
 -->
 <config>
     <modules>
-        <Sirateck_Lemonwaymkt>
+        <Selectbiz_Payohmkt>
             <active>true</active>
             <codePool>community</codePool>
             <depends>
                 <Mage_Core />
-                <Sirateck_Lemonway />
+                <Selectbiz_Payoh />
                 <Webkul_Marketplace />
              </depends>
-        </Sirateck_Lemonwaymkt>
+        </Selectbiz_Payohmkt>
     </modules>
 </config>
