@@ -1,10 +1,10 @@
 <?php /* @var $this Mage_Core_Block_Template */ ?>
 <div class="dashboard">
     <div class="page-title">
-        <h1><?php echo $this->__('Lemonway Payment') ?></h1>
+        <h1><?php echo $this->__('Payoh Payment') ?></h1>
     </div>
     <?php echo $this->getMessagesBlock()->toHtml() ?>
-	<form action="<?php echo $this->getUrl('lemonwaymkt/account/ibanPost')?>" method="post" >
+	<form action="<?php echo $this->getUrl('payohmkt/account/ibanPost')?>" method="post" >
 		<div class="fieldset">
 			<h2 class="legend"><?php echo $this->__('Bank account informations') ?></h2>
 			<ul class="form-list">
@@ -41,7 +41,7 @@
 			</ul>
 		</div>
 		<div class="buttons-set">
-        	<p class="back-link"><a href="<?php echo $this->getUrl('lemonwaymkt/account/') ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        	<p class="back-link"><a href="<?php echo $this->getUrl('payohmkt/account/') ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
         	<button type="submit" class="button" title="<?php echo $this->__('Save Iban') ?>"><span><span><?php echo $this->__('Save Iban') ?></span></span></button>
     </div>
 	</form>

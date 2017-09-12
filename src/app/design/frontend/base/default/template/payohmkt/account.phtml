@@ -1,28 +1,28 @@
-<?php /* @var $this Sirateck_Lemonwaymkt_Block_Account */?>
+<?php /* @var $this Selectbiz_Payohmkt_Block_Account */?>
 <?php
-/* @var $_wallet Sirateck_Lemonway_Model_Wallet*/
+/* @var $_wallet Selectbiz_Payoh_Model_Wallet*/
 $_wallet = $this->getCustomerWallet();
 ?>
 <div class="dashboard">
     <div class="page-title">
-        <h1><?php echo $this->__('Lemonway payment') ?></h1>
+        <h1><?php echo $this->__('Payoh payment') ?></h1>
     </div>
     <?php echo $this->getMessagesBlock()->toHtml() ?>
     <div class="box-account box-info">
         <div class="box-head">
-            <h2><?php echo $this->__('Lemonway Account Information') ?></h2>
+            <h2><?php echo $this->__('Payoh Account Information') ?></h2>
         </div>
          <div class="col2-set">
 		    <div class="col-1">
 		        <div class="box">
 		            <div class="box-title">
 		                <h3><?php echo $this->__('Wallet Information') ?></h3>
-                		<?php /*<a href="<?php echo $this->getUrl('lemonwaymkt/account/createWallet') ?>"><?php echo $this->__('Create wallet') ?></a> */?>
+                		<?php /*<a href="<?php echo $this->getUrl('payohmkt/account/createWallet') ?>"><?php echo $this->__('Create wallet') ?></a> */?>
             		</div>
 		            <div class="box-content">
 		            	<?php if($this->hasWallet()):?>
 		            	<?php
-		            			/* @var $_wallet Sirateck_Lemonway_Model_Apikit_Apimodels_Wallet */
+		            			/* @var $_wallet Selectbiz_Payoh_Model_Apikit_Apimodels_Wallet */
 		            			$_walletDetails = $this->getWalletDetails()->wallet;  
 		            		?>
 		                     <table cellspacing="0" class="form-list" style="width:100%">
@@ -60,13 +60,13 @@ $_wallet = $this->getCustomerWallet();
 				                <td class="label"><label ><?php echo $this->__('Documents')?></label></td>
 				                <td class="value">
 				                   <?php echo $this->__('<strong>%d</strong> document(s) uploaded.',count($_walletDetails->getKycDocs())) ?><br /> 
-				                    <a href="<?php echo $this->getUrl('lemonwaymkt/account/uploadDoc') ?>"><?php echo $this->__('Upload a new document')?></a>
+				                    <a href="<?php echo $this->getUrl('payohmkt/account/uploadDoc') ?>"><?php echo $this->__('Upload a new document')?></a>
 				                </td>
 				            </tr>
 				        </table>
 		                <?php else:?>
 		                	<p><?php echo $this->__("You don't have a wallet!")?></p>
-		                	<a href="<?php echo $this->getUrl('lemonwaymkt/account/createWallet') ?>"><?php echo $this->__('Create my wallet') ?></a>
+		                	<a href="<?php echo $this->getUrl('payohmkt/account/createWallet') ?>"><?php echo $this->__('Create my wallet') ?></a>
 		                <?php endif;?>
 		            </div>
         		</div>
@@ -106,7 +106,7 @@ $_wallet = $this->getCustomerWallet();
 		                	<?php else:?>
 		                		<p><?php echo $this->__("You don't have any Iban!")?></p>
 		                	<?php endif;?>
-		                	<a href="<?php echo $this->getUrl('lemonwaymkt/account/addIban') ?>"><?php echo $this->__('Add an Iban') ?></a>
+		                	<a href="<?php echo $this->getUrl('payohmkt/account/addIban') ?>"><?php echo $this->__('Add an Iban') ?></a>
 					    </div>
 					</div>
 				<?php endif;?>
@@ -146,7 +146,7 @@ $_wallet = $this->getCustomerWallet();
         	<p class="a-center" style="margin:10px 0"><?php echo $this->__("You don't have any Money out!")?></p>
         <?php endif;?>
         <div class="buttons-set">
-        	<a  href="<?php echo $this->getUrl('lemonwaymkt/account/doMoneyout')?>" class="button" title="<?php echo $this->__('Do a money out') ?>"><span><span><?php echo $this->__('Do a money out') ?></span></span></a>
+        	<a  href="<?php echo $this->getUrl('payohmkt/account/doMoneyout')?>" class="button" title="<?php echo $this->__('Do a money out') ?>"><span><span><?php echo $this->__('Do a money out') ?></span></span></a>
     	</div>
   </div>
   <?php endif;?>

@@ -1,0 +1,14 @@
+<?php 
+$partner = Mage::getModel('marketplace/userprofile')->isPartner(Mage::getSingleton('customer/session')->getCustomerId()); 
+$magentoCurrentUrl = Mage::helper('core/url')->getCurrentUrl(); 
+?>	
+<?php if($partner):?>
+<li  <?php echo strpos($magentoCurrentUrl,'payohmkt/account')? "class=current":"";?>>
+	<?php if(strpos($magentoCurrentUrl,'payohmkt/account')){ ?>
+		<strong><?php echo $this->__('Payoh payment') ?></strong>
+	<?php }
+	else{ ?>
+		<a href="<?php echo $this->getUrl('payohmkt/account/index'); ?>"><?php echo $this->__('Payoh payment') ?></a>
+	<?php } ?>					
+</li>
+<?php endif;?>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<layout version="1.1.0">
+		 <customer_account>
+		 	 <reference name="marketplacenavigation">
+		        	<block type="core/template" name="lw.account.link" template="payohmkt/account_link.phtml" />
+		        </reference>
+		 </customer_account>
+		<payohmkt_account_index>
+		 		<update handle="customer_account" />
+		        <reference name="content">
+		            <block type="payohmkt/account" name="lw.account" template="payohmkt/account.phtml" />
+		        </reference>
+		</payohmkt_account_index>
+		<payohmkt_account_addiban>
+			<update handle="customer_account" />
+			<reference name="content">
+		            <block type="core/template" name="lw.account.iban" template="payohmkt/iban/form.phtml" />
+		     </reference>
+		</payohmkt_account_addiban>
+		<payohmkt_account_domoneyout>
+			<update handle="customer_account" />
+			<reference name="content">
+		            <block type="payohmkt/account" name="lw.account.moneyout" template="payohmkt/moneyout/form.phtml" />
+		     </reference>
+		</payohmkt_account_domoneyout>
+		<payohmkt_account_uploaddoc>
+			<update handle="customer_account" />
+			<reference name="content">
+		            <block type="payohmkt/account" name="lw.account.uploaddoc" template="payohmkt/wallet/upload_doc.phtml" />
+		     </reference>
+		</payohmkt_account_uploaddoc>
+	</layout>
